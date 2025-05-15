@@ -7,12 +7,14 @@
 </template>
 
 <script lang="ts" setup>
+const { toggleMenuPanel } = useUI()
 const emit = defineEmits<{
     (e: 'onMenuClick'): void
 }>();
 
 const handleMenuClick = () => {
     emit('onMenuClick');
+    toggleMenuPanel()
 };
 </script>
 
@@ -31,6 +33,10 @@ const handleMenuClick = () => {
     gap: 5px;
   }
 
+  @include start-from(medium-desktop) {
+    display: none;
+  }
+
   span {
     background-color: var(--ui-primary);
     height: 3px;
@@ -46,7 +52,6 @@ const handleMenuClick = () => {
   }
 
   span:nth-child(3) {
-    align-self: flex-end;
     width: 10px;
 
     @include start-from(tablet) {

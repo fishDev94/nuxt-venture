@@ -1,5 +1,8 @@
 <template>
-  <main>
-    <UiNavBar />
-  </main>
+  <div>
+    <NvHero />
+    <div class="wrapper">
+      <UiNvCard />
+    </div>
+  </div>
 </template>

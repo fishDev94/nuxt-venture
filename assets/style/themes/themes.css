@@ -39,4 +39,6 @@ Color Palette
 
   /* Primary */
   --nv-primary-100: 29, 221, 129;
+
+  --nv-navbar-height-mobile: 74px;
 }
