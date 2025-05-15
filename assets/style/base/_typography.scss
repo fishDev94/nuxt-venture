@@ -1,0 +1,140 @@
+@use "sass:map";
+
+/// map headings type
+$heading-map: (
+  1: (
+    "family": var(--nv-font-primary),
+    "size": 48px,
+  ),
+  2: (
+    "family": var(--nv-font-primary),
+    "size": 40px,
+  ),
+  3: (
+    "family": var(--nv-font-primary),
+    "size": 32px,
+  ),
+);
+
+/// @name heading
+/// adds fonts style rules: family, size, line-height and weight
+/// @parameter {1 | 2 | 3} $type - defines font-family, font-size and line-height vars
+/// @see {$heading-map}
+///
+@mixin heading($type) {
+  $heading-values: map.get($heading-map, $type);
+
+  font-family: map.get($heading-values, "family");
+  font-size: map.get($heading-values, "size");
+  line-height: map.get($heading-values, "line-height");
+  font-weight: bold;
+  line-height: 110%;
+}
+
+/// map sub-headings type
+$sub-heading-map: (
+  1: (
+    "family": var(--nv-font-primary),
+    "size": 40px,
+    "weight": 700,
+    "line-height": 115%,
+  ),
+  2: (
+    "family": var(--nv-font-primary),
+    "size": 32px,
+    "weight": 700,
+    "line-height": 115%,
+  ),
+  3: (
+    "family": var(--nv-font-primary),
+    "size": 24px,
+    "weight": 700,
+    "line-height": 115%,
+  ),
+  4: (
+    "family": var(--nv-font-primary),
+    "size": 28px,
+    "weight": 700,
+    "line-height": 120%,
+  ),
+  5: (
+    "family": var(--nv-font-primary),
+    "size": 24px,
+    "weight": 700,
+    "line-height": 120%,
+  ),
+  6: (
+    "family": var(--nv-font-primary),
+    "size": 20px,
+    "weight": 700,
+    "line-height": 120%,
+  ),
+);
+
+/// @name sub-heading
+/// adds fonts style rules: family, size, line-height and weight
+/// @parameter {1 | 2 | 3 | 4 | 5} $type - defines font-family, font-size and line-height vars
+/// @see {$sub-heading-map}
+///
+@mixin sub-heading($type) {
+  $sub-heading-values: map.get($sub-heading-map, $type);
+
+  font-family: map.get($sub-heading-values, "family");
+  font-size: map.get($sub-heading-values, "size");
+  line-height: map.get($sub-heading-values, "line-height");
+  font-weight: map.get($sub-heading-values, "weight");
+}
+
+/// map bodies type
+$body-map: (
+  1: (
+    "family": var(--nv-font-primary),
+    "size": 20px,
+    "line-height": 140%,
+    "weight": 400,
+  ),
+  2: (
+    "family": var(--nv-font-primary),
+    "size": 18px,
+    "line-height": 140%,
+    "weight": 400,
+  ),
+  3: (
+    "family": var(--nv-font-primary),
+    "size": 16px,
+    "line-height": 140%,
+    "weight": 400,
+  ),
+  4: (
+    "family": var(--nv-font-primary),
+    "size": 16px,
+    "line-height": 130%,
+    "weight": 400,
+  ),
+  5: (
+    "family": var(--nv-font-primary),
+    "size": 14px,
+    "line-height": 130%,
+    "weight": 400,
+  ),
+  6: (
+    "family": var(--nv-font-primary),
+    "size": 12px,
+    "line-height": 130%,
+    "weight": 400,
+  ),
+);
+
+/// @name body
+/// adds fonts style rules: family, size, line-height and weight
+/// @parameter {0 | 1 | 2 | 3 | 4 | 5} $type - defines font-family, font-size, line-height and weight vars
+/// @see {$body-map}
+///
+@mixin body($type) {
+  $body-values: map.get($body-map, $type);
+
+  font-family: map.get($body-values, "family");
+  font-size: map.get($body-values, "size");
+  line-height: map.get($body-values, "line-height");
+  font-weight: map.get($body-values, "weight");
+}

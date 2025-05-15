@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+* {
+    font-family: var(--nv-font-primary);
+}

@@ -1,0 +1,133 @@
+@use "./utils" as *;
+
+@forward "base/_font.css";
+@forward "themes/themes.css";
+
+@forward "vendors/normalize";
+
+:root {
+  --ui-primary: rgba(var(--nv-primary-100));
+  --ui-error: rgba(var(--nv-error-80));
+
+  --ui-text: rgba(var(--nv-neutral-80));
+  --ui-text-strong: rgba(var(--nv-neutral-90));
+  --ui-bg: rgba(var(--nv-neutral-0));
+  --ui-soft-bg: rgba(var(--nv-neutral-20));
+  --ui-border: #e4e4e7;
+  --ui-bg-hover: rgba(244, 244, 245, 1);
+  --nv-label-bg: rgba(var(--nv-neutral-50));
+  --nv-label-bg-selected: rgba(var(--nv-neutral-60));
+  --nv-label-text: var(--ui-text);
+  --nv-label-text-selected: rgba(var(--nv-neutral-40));
+
+  --nv-main-color: var(--nv-neutral-60);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: rgba(var(--nv-neutral-90));
+  }
+
+  p,
+  li {
+    color: rgba(var(--nv-neutral-80));
+  }
+
+  strong {
+    color: rgba(var(--nv-neutral-90));
+  }
+
+  .border {
+    border-color: var(--ui-border) !important;
+  }
+
+  .highlighted {
+    color: rgba(var(--nv-neutral-90));
+  }
+}
+
+.wrapper {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 24px;
+
+  @include start-from(tablet) {
+    padding-inline: 64px;
+  }
+}
+
+h1 {
+  @include heading(3);
+
+  @include start-from(medium-desktop) {
+    @include heading(2);
+  }
+
+  @include start-from(large-desktop) {
+    @include heading(1);
+  }
+}
+
+h2 {
+  @include sub-heading(3);
+
+  @include start-from(medium-desktop) {
+    @include sub-heading(2);
+  }
+
+  @include start-from(large-desktop) {
+    @include sub-heading(1);
+  }
+}
+
+h3 {
+  @include sub-heading(6);
+
+  @include start-from(medium-desktop) {
+    @include sub-heading(5);
+  }
+
+  @include start-from(large-desktop) {
+    @include sub-heading(4);
+  }
+}
+
+p,
+p > span {
+  @include body(3);
+
+  @include start-from(medium-desktop) {
+    @include body(2);
+  }
+
+  @include start-from(large-desktop) {
+    @include body(1);
+  }
+}
+
+.small-text {
+  @include body(6);
+
+  @include start-from(medium-desktop) {
+    @include body(5);
+  }
+
+  @include start-from(large-desktop) {
+    @include body(4);
+  }
+}
+
+.block-section {
+  padding-block: 28px;
+
+  @include start-from(medium-desktop) {
+    padding-block: 80px;
+  }
+}
+
+button {
+  border-radius: var(--nv-radius-xs);
+}
