@@ -1,0 +1,38 @@
+{
+  "extends": ["eslint:recommended", "plugin:vue/vue3-recommended"],
+  "categories": {
+    "style": "error",
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "plugins": ["vue", "typescript"],
+  "parser": "vue-eslint-parser",
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "sort-keys": "off",
+    "no-unused-vars": ["warn"],
+    "vue/no-unused-components": "error",
+    "vue/html-closing-bracket-newline": ["error", { "multiline": "always" }],
+    "vue/html-indent": ["error", 2],
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/max-attributes-per-line": [
+      "error",
+      { "singleline": 3, "multiline": 1 }
+    ],
+    "no-ternary": "off",
+    "yoda": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.vue"],
+      "rules": {
+        "quotes": ["error", "single"],
+        "vue/multiline-html-element-content-newline": [
+          "error",
+          { "allowEmptyLines": true }
+        ]
+      }
+    }
+  ]
+}
