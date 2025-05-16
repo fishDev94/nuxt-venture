@@ -1,0 +1,197 @@
+[
+  {
+    "id": 1,
+    "type": "experience",
+    "name": "Chianti Countryside Vespa Tour",
+    "city": "Florence",
+    "price": 95.0,
+    "rating": 4.8,
+    "shortDescription": "Ride a classic Vespa through the rolling hills of Chianti with tastings at two wineries.",
+    "coverImage": "https://picsum.photos/seed/vespa/600/400",
+    "images": [
+      "https://picsum.photos/seed/vespa1/800/600",
+      "https://picsum.photos/seed/vespa2/800/600",
+      "https://picsum.photos/seed/vespa3/800/600"
+    ]
+  },
+  {
+    "id": 2,
+    "type": "experience",
+    "name": "Neapolitan Pizza Making Class",
+    "city": "Naples",
+    "price": 55.0,
+    "rating": 4.9,
+    "shortDescription": "Learn to knead, top and bake the perfect Neapolitan pizza in a historic pizzeria.",
+    "coverImage": "https://picsum.photos/seed/pizza/600/400",
+    "images": [
+      "https://picsum.photos/seed/pizza1/800/600",
+      "https://picsum.photos/seed/pizza2/800/600",
+      "https://picsum.photos/seed/pizza3/800/600"
+    ]
+  },
+  {
+    "id": 3,
+    "type": "experience",
+    "name": "Colosseum & Underground Night Tour",
+    "city": "Rome",
+    "price": 89.0,
+    "rating": 4.7,
+    "shortDescription": "Explore the Colosseum after hours, including the arena floor and underground chambers.",
+    "coverImage": "https://picsum.photos/seed/colosseum/600/400",
+    "images": [
+      "https://picsum.photos/seed/colosseum1/800/600",
+      "https://picsum.photos/seed/colosseum2/800/600",
+      "https://picsum.photos/seed/colosseum3/800/600"
+    ]
+  },
+  {
+    "id": 4,
+    "type": "experience",
+    "name": "Gondola Ride & Serenade",
+    "city": "Venice",
+    "price": 120.0,
+    "rating": 4.5,
+    "shortDescription": "Glide through Venice's canals on a gondola accompanied by traditional Italian musicians.",
+    "coverImage": "https://picsum.photos/seed/gondola/600/400",
+    "images": [
+      "https://picsum.photos/seed/gondola1/800/600",
+      "https://picsum.photos/seed/gondola2/800/600",
+      "https://picsum.photos/seed/gondola3/800/600"
+    ]
+  },
+  {
+    "id": 5,
+    "type": "experience",
+    "name": "Truffle Hunting with Dogs",
+    "city": "Alba",
+    "price": 110.0,
+    "rating": 4.9,
+    "shortDescription": "Join expert hunters and their dogs in search of prized white truffles in Piedmont\u2019s woods.",
+    "coverImage": "https://picsum.photos/seed/truffle/600/400",
+    "images": [
+      "https://picsum.photos/seed/truffle1/800/600",
+      "https://picsum.photos/seed/truffle2/800/600",
+      "https://picsum.photos/seed/truffle3/800/600"
+    ]
+  },
+  {
+    "id": 6,
+    "type": "experience",
+    "name": "Matera Cave City Walking Tour",
+    "city": "Matera",
+    "price": 40.0,
+    "rating": 4.6,
+    "shortDescription": "Discover the ancient Sassi cave dwellings and rock churches with a local guide.",
+    "coverImage": "https://picsum.photos/seed/matera/600/400",
+    "images": [
+      "https://picsum.photos/seed/matera1/800/600",
+      "https://picsum.photos/seed/matera2/800/600",
+      "https://picsum.photos/seed/matera3/800/600"
+    ]
+  },
+  {
+    "id": 7,
+    "type": "experience",
+    "name": "Etna Sunset Jeep Excursion",
+    "city": "Catania",
+    "price": 75.0,
+    "rating": 4.8,
+    "shortDescription": "Off\u2011road adventure to Mount Etna\u2019s craters with sunset views and Sicilian wine tasting.",
+    "coverImage": "https://picsum.photos/seed/etna/600/400",
+    "images": [
+      "https://picsum.photos/seed/etna1/800/600",
+      "https://picsum.photos/seed/etna2/800/600",
+      "https://picsum.photos/seed/etna3/800/600"
+    ]
+  },
+  {
+    "id": 8,
+    "type": "experience",
+    "name": "Uffizi Gallery Skip\u2011the\u2011Line Guided Tour",
+    "city": "Florence",
+    "price": 65.0,
+    "rating": 4.7,
+    "shortDescription": "See masterpieces by Botticelli and Da Vinci with an art historian guide.",
+    "coverImage": "https://picsum.photos/seed/uffizi/600/400",
+    "images": [
+      "https://picsum.photos/seed/uffizi1/800/600",
+      "https://picsum.photos/seed/uffizi2/800/600",
+      "https://picsum.photos/seed/uffizi3/800/600"
+    ]
+  },
+  {
+    "id": 9,
+    "type": "experience",
+    "name": "Limoncello Workshop on Amalfi Coast",
+    "city": "Amalfi",
+    "price": 50.0,
+    "rating": 4.9,
+    "shortDescription": "Craft your own limoncello using Amalfi lemons in a traditional family-run limoneto.",
+    "coverImage": "https://picsum.photos/seed/limoncello/600/400",
+    "images": [
+      "https://picsum.photos/seed/limoncello1/800/600",
+      "https://picsum.photos/seed/limoncello2/800/600",
+      "https://picsum.photos/seed/limoncello3/800/600"
+    ]
+  },
+  {
+    "id": 10,
+    "type": "experience",
+    "name": "Sailing Day Trip to La Maddalena",
+    "city": "Olbia",
+    "price": 115.0,
+    "rating": 4.8,
+    "shortDescription": "Full\u2011day sailing adventure among the crystal\u2011clear islands of La Maddalena archipelago.",
+    "coverImage": "https://picsum.photos/seed/sailing/600/400",
+    "images": [
+      "https://picsum.photos/seed/sailing1/800/600",
+      "https://picsum.photos/seed/sailing2/800/600",
+      "https://picsum.photos/seed/sailing3/800/600"
+    ]
+  },
+  {
+    "id": 101,
+    "type": "hotel",
+    "name": "Grand Hotel Milano",
+    "city": "Milan",
+    "price": 180.0,
+    "rating": 4.6,
+    "shortDescription": "Luxury stay in the heart of Milan with rooftop pool and city views.",
+    "coverImage": "https://picsum.photos/seed/grandhotel/600/400",
+    "images": [
+      "https://picsum.photos/seed/grandhotel1/800/600",
+      "https://picsum.photos/seed/grandhotel2/800/600",
+      "https://picsum.photos/seed/grandhotel3/800/600"
+    ]
+  },
+  {
+    "id": 102,
+    "type": "hotel",
+    "name": "Villa d\u2019Este",
+    "city": "Como",
+    "price": 250.0,
+    "rating": 4.9,
+    "shortDescription": "Historic lakeside villa offering refined luxury and serene gardens.",
+    "coverImage": "https://picsum.photos/seed/villadeste/600/400",
+    "images": [
+      "https://picsum.photos/seed/villadeste1/800/600",
+      "https://picsum.photos/seed/villadeste2/800/600",
+      "https://picsum.photos/seed/villadeste3/800/600"
+    ]
+  },
+  {
+    "id": 103,
+    "type": "hotel",
+    "name": "Hotel Excelsior Venice",
+    "city": "Venice",
+    "price": 300.0,
+    "rating": 4.8,
+    "shortDescription": "Exclusive beachfront resort on the Venice Lido, perfect for a romantic getaway.",
+    "coverImage": "https://picsum.photos/seed/excelsior/600/400",
+    "images": [
+      "https://picsum.photos/seed/excelsior1/800/600",
+      "https://picsum.photos/seed/excelsior2/800/600",
+      "https://picsum.photos/seed/excelsior3/800/600"
+    ]
+  }
+]

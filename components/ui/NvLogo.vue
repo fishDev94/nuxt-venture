@@ -5,6 +5,7 @@
     xmlns="http://www.w3.org/2000/svg"
     width="36px"
     height="36px"
+    @click="$router.push('/')"
   >
     <g transform="matrix(1.3333 0 0 -1.3333 -143.1 194.39)">
       <g transform="scale(.1)">
