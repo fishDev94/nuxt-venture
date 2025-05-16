@@ -1,7 +1,7 @@
 <template>
   <UCard class="nv-card" as="a" :href="`/id/${id}`">
     <template #header>
-      <NuxtImg :src class="nv-card__img h-32 lg:h-48" />
+      <NuxtImg :src class="nv-card__img h-34 lg:h-48" />
     </template>
 
     <template #default>
@@ -58,7 +58,6 @@ const {
 
   @include start-from(tablet) {
     min-width: 320px;
-    // height: 320px;
   }
 
   & > * {

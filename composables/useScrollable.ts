@@ -44,7 +44,6 @@ export const useScrollable = <T extends HTMLElement>(
   };
 
   const updateScrollValue = () => {
-    console.log(maxScrollLeft.value)
     if (element.value) {
       scrollLeft.value = Math.trunc(element.value.scrollLeft);
       maxScrollLeft.value =
@@ -73,7 +72,6 @@ export const useScrollable = <T extends HTMLElement>(
   });
 
   onWindowResize(() => {
-    console.log('test')
     updateScrollValue();
   });
 
