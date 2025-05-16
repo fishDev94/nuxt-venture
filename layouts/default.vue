@@ -1,16 +1,10 @@
 <template>
-  <main class="nv-main">
+  <div>
     <UiNavBar />
     <slot />
-  </main>
+  </div>
 </template>
 
 <script lang="ts" setup>
 
 </script>
-
-<style lang="scss" scoped>
-.nv-main {
-  position: relative;
-}
-</style>

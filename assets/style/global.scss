@@ -7,7 +7,7 @@
 
 :root {
   --ui-primary: rgba(var(--nv-primary-100));
-  --ui-secondary: rgba(9, 73, 42);
+  --ui-secondary: rgba(var(--nv-secondary-100));
   --ui-error: rgba(var(--nv-error-80));
 
   --ui-text: rgba(var(--nv-neutral-80));
@@ -122,10 +122,12 @@ p > span {
 }
 
 .block-section {
-  padding-block: 28px;
+  border: 1px solid rgba(var(--nv-secondary-100), 0.15);
+  border-radius: 16px;
+  padding: 16px;
 
   @include start-from(medium-desktop) {
-    padding-block: 80px;
+    padding: 24px;
   }
 }
 

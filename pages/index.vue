@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <NvHero />
     <div class="home-main wrapper">
       <section class="nv-top-section">
@@ -11,7 +11,7 @@
         <NvCarousel :data="experiences"/>
       </section>
     </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts" setup>
