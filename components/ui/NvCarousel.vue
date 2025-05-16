@@ -1,16 +1,7 @@
 <template>
   <div class="nv-carousel">
     <div ref="carousel-ref" class="nv-carousel__scroller">
-      <UiNvCard
-        v-for="(product, idx) in data"
-        :id="product.id"
-        :key="`${product.type}-${idx}`"
-        :title="product.name"
-        :price="product.price"
-        :description="product.shortDescription"
-        :src="product.coverImage"
-        :rating="product.rating"
-      />
+      <slot />
     </div>
     <div v-if="shouldShowArrows" class="nv-carousel__scroll-btn">
       <UButton
@@ -31,7 +22,6 @@
 
 <script lang="ts" setup>
 import { FIRST_ELEMENT, INIT_REF_NUMBER } from "~/constants";
-import type { Product } from "~/types/Products";
 
 const caruselEl = useTemplateRef("carousel-ref");
 const cardWidth = computed(() => {
@@ -42,10 +32,6 @@ const cardWidth = computed(() => {
 
 const { handleScroll, shouldShowArrows, isNextDisabled, isPrevDisabled } =
   useScrollable(caruselEl, cardWidth);
-
-const { data } = defineProps<{
-  data: Product[] | null;
-}>();
 </script>
 
 <style lang="scss" scoped>

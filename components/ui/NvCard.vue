@@ -16,11 +16,7 @@
           <p class="nv-card__info--price">
             <strong>€ {{ price }}</strong>
           </p>
-          <p v-if="rating" class="nv-card__info--rating">
-            <UIcon class="star-icon" name="material-symbols:star" />
-            <strong>{{ rating }}</strong
-            >/5
-          </p>
+          <UiRatingStar v-if="rating" :rating />
         </div>
       </div>
     </template>
@@ -115,17 +111,6 @@ const {
     justify-content: space-between;
     align-items: center;
 
-    &--rating {
-      @include body(6);
-
-      display: flex;
-      align-items: center;
-
-      @include start-from(medium-desktop) {
-        @include body(5);
-      }
-    }
-
     &--price {
       @include body(5);
 
@@ -133,10 +118,6 @@ const {
         @include body(4);
       }
     }
-  }
-
-  .star-icon {
-    color: rgba(var(--nv-alert-100));
   }
 }
 </style>
