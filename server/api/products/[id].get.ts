@@ -1,3 +1,4 @@
+import type { Product } from '~/types/Products';
 import products from '~/assets/data/products.json'
 
 export default defineEventHandler(async (event) => {
@@ -19,5 +20,5 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  return product
+  return product as Product
 })

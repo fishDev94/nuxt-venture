@@ -17,13 +17,13 @@ export const useScrollable = <T extends HTMLElement>(
     () => scrollLeft.value >= maxScrollLeft.value
   );
   const isPrevDisabled = computed(() => scrollLeft.value <= INIT_REF_NUMBER);
-  const shouldShowArrows = computed(
-    () => maxScrollLeft.value > INIT_REF_NUMBER
-  );
+  const shouldShowArrows = computed(() => {
+    return maxScrollLeft.value > INIT_REF_NUMBER;
+  });
 
   const handleScroll = (side?: "right") => {
-    const moveAmount = scrollMoveRef.value
-    
+    const moveAmount = scrollMoveRef.value;
+
     if (element.value) {
       if (side == "right") {
         element.value.scroll({
@@ -44,6 +44,7 @@ export const useScrollable = <T extends HTMLElement>(
   };
 
   const updateScrollValue = () => {
+    console.log(maxScrollLeft.value)
     if (element.value) {
       scrollLeft.value = Math.trunc(element.value.scrollLeft);
       maxScrollLeft.value =
@@ -72,6 +73,7 @@ export const useScrollable = <T extends HTMLElement>(
   });
 
   onWindowResize(() => {
+    console.log('test')
     updateScrollValue();
   });
 
@@ -87,5 +89,13 @@ export const useScrollable = <T extends HTMLElement>(
     next();
   });
 
-  return { isNextDisabled, isPrevDisabled, shouldShowArrows, handleScroll, updateScrollValue };
+  watch(element, () => updateScrollValue())
+
+  return {
+    isNextDisabled,
+    isPrevDisabled,
+    shouldShowArrows,
+    handleScroll,
+    updateScrollValue,
+  };
 };

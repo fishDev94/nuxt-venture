@@ -1,29 +1,47 @@
 <template>
-  <UCard class="nv-card" as="a" href="/test">
-    <NuxtImg :src class="nv-card__img h-32" />
+  <UCard class="nv-card" as="a" :href="`/id/${id}`">
+    <template #header>
+      <NuxtImg :src class="nv-card__img h-32 lg:h-48" />
+    </template>
 
-    <template #footer>
-      <h3 class="nv-card__title">{{ title }}</h3>
-      <p class="nv-card__description">
-        {{ description }}
-      </p>
-      <div class="nv-card__price">€ {{ price }}</div>
+    <template #default>
+      <div class="nv-card__footer-container">
+        <div class="nv-card__footer-subhead">
+          <h3 class="nv-card__title">{{ title }}</h3>
+          <p class="nv-card__description">
+            {{ description }}
+          </p>
+        </div>
+        <div class="nv-card__info">
+          <p class="nv-card__info--price">
+            <strong>€ {{ price }}</strong>
+          </p>
+          <p v-if="rating" class="nv-card__info--rating">
+            <UIcon class="star-icon" name="material-symbols:star" />
+            <strong>{{ rating }}</strong
+            >/5
+          </p>
+        </div>
+      </div>
     </template>
   </UCard>
 </template>
 
 <script lang="ts" setup>
-import { PRICE_PLACEHOLDER } from '~/constants';
+import { PRICE_PLACEHOLDER } from "~/constants";
 
 const {
   price = PRICE_PLACEHOLDER,
   title = "Title card placeholder",
   src = "https://picsum.photos/200/300",
+  rating = undefined,
   description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium quod, iure debitis maiores laborum dicta.",
 } = defineProps<{
   title?: string;
   description?: string;
   src?: string;
+  rating?: number;
+  id: number;
   price?: number;
 }>();
 </script>
@@ -32,29 +50,94 @@ const {
 @use "assets/style/utils" as *;
 
 .nv-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  flex: 0 0 230px;
+  scroll-snap-align: start;
+
+  @include start-from(tablet) {
+    min-width: 320px;
+    // height: 320px;
+  }
+
+  & > * {
+    flex: 1;
+  }
 
   &__img {
     width: 100%;
+  }
+
+  &__footer-subhead {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    @include start-from(medium-desktop) {
+      gap: 12px;
+    }
+  }
+
+  &__footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+    height: 100%;
+
+    @include start-from(medium-desktop) {
+      gap: 12px;
+    }
   }
 
   &__title {
     @include body(3);
 
     font-weight: 700;
+
+    @include start-from(medium-desktop) {
+      @include body(2);
+
+      font-weight: 700;
+    }
   }
 
   &__description {
     @include body(6);
+
+    @include start-from(medium-desktop) {
+      @include body(5);
+    }
   }
 
-  &__price {
-    @include body(5);
-
-    font-weight: 700;
+  &__info {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
+
+    &--rating {
+      @include body(6);
+
+      display: flex;
+      align-items: center;
+
+      @include start-from(medium-desktop) {
+        @include body(5);
+      }
+    }
+
+    &--price {
+      @include body(5);
+
+      @include start-from(medium-desktop) {
+        @include body(4);
+      }
+    }
+  }
+
+  .star-icon {
+    color: rgba(var(--nv-alert-100));
   }
 }
 </style>
