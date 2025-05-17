@@ -2,14 +2,10 @@
   <main>
     <section v-if="data" class="nv-product-page wrapper">
       <div class="nv-product-page__header">
-        <div class="nv-product-page__header-gallery">
-          <img
-            v-for="(imageUrl, idx) in data.images"
-            :key="`gallery-${idx}`"
-            :src="imageUrl"
-            :alt="`gallery-${idx}`"
-          >
-        </div>
+        <UiNvGallery
+          class="nv-product-page__header-gallery"
+          :images="data.images"
+        />
         <div class="nv-product-page__header-breadcrumbs">
           <NuxtLink :to="{ name: 'home' }">Home</NuxtLink><strong>/</strong
           ><span>{{ data.name }}</span>
@@ -47,7 +43,7 @@
         </div>
         <UButton
           class="nv-product-page__sidebar-btn font-bold text-(--ui-bg) px-6"
-          @click="addToCart(data.id, data.price, quantity)"
+          @click="handleAddCartClick"
           >Add to cart</UButton
         >
       </div>
@@ -61,6 +57,7 @@ import { UNIT } from "~/constants";
 
 const route = useRoute();
 const { addToCart } = useCart();
+const toast = useToast();
 const quantity = ref(UNIT);
 
 const { data } = await useAsyncData(
@@ -72,6 +69,17 @@ const { data } = await useAsyncData(
     },
   }
 );
+
+const handleAddCartClick = () => {
+  if (data.value) {
+    addToCart(data.value.id, data.value.price, quantity.value);
+    toast.add({
+      title: "Experience added to your itinerary!",
+      ui: { title: "text-(--ui-secondary)" },
+      duration: 2000,
+    });
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -107,61 +115,8 @@ const { data } = await useAsyncData(
   }
 
   &__header-gallery {
-    display: grid;
-    height: 195px;
-    overflow: hidden;
-    gap: 4px;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-      "first second"
-      "first third";
-    position: relative;
-
-    @include start-from(tablet) {
-      grid-template-areas:
-        "first second third"
-        "first second third";
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 8px;
-      height: 256px;
-    }
-
     @include start-from(medium-desktop) {
-      height: 340px;
       order: 3;
-    }
-
-    img {
-      object-fit: cover;
-    }
-
-    img:first-child {
-      height: 196px;
-      width: 100%;
-      grid-area: first;
-
-      @include start-from(tablet) {
-        height: 100%;
-      }
-    }
-
-    img:nth-child(n + 2) {
-      height: 98px;
-      width: 100%;
-
-      @include start-from(tablet) {
-        height: 100%;
-      }
-    }
-
-    img:nth-child(2) {
-      grid-area: second;
-    }
-
-    img:nth-child(3) {
-      grid-area: third;
     }
   }
 
@@ -329,8 +284,7 @@ const { data } = await useAsyncData(
   }
 
   :deep(.nv-product-page__sidebar-btn) {
-      flex: 0 0 auto;
-
+    flex: 0 0 auto;
   }
 }
 </style>

@@ -17,9 +17,18 @@
           <span>Total</span>
           <span>€ {{ totalPrice }}</span>
         </div>
-        <UButton class="nv-cart__review-btn" :disabled="isButtonDisabled"
-          >Go to checkout</UButton
-        >
+        <div class="nv-cart__review-buttons">
+          <UButton
+            class="nv-cart__review-clear-btn"
+            color="secondary"
+            variant="ghost"
+            @click="open"
+            >Clear all cart</UButton
+          >
+          <UButton class="nv-cart__review-btn" :disabled="isButtonDisabled"
+            >Go to checkout</UButton
+          >
+        </div>
       </section>
       <section v-else class="nv-cart__empty block-section">
         <h3>Your Adventure Awaits</h3>
@@ -31,8 +40,34 @@
 
 <script lang="ts" setup>
 import { INIT_REF_NUMBER, UNIT } from "~/constants";
+import { LazyUiNvModal } from "#components";
 
-const { totalItems, totalPrice, cart } = useCart();
+const { totalItems, totalPrice, cart, clearCart } = useCart();
+const toast = useToast();
+const overlay = useOverlay();
+
+const modal = overlay.create(LazyUiNvModal, {
+  props: {
+    title: `Are you sure you want to clear your itinerary? All selected experiences will be removed.`,
+  },
+});
+
+async function open() {
+  const instance = modal.open();
+  const accepted = await instance.result;
+
+  if (accepted) {
+    toast.add({
+      title: "Itinerary cleared successfully",
+      color: "error",
+      ui: { title: "text-(--ui-secondary)" },
+      duration: 2000,
+      id: "modal-dismiss",
+    });
+
+    clearCart()
+  }
+}
 
 const isCart = computed(() => Boolean(cart.value.length));
 const isButtonDisabled = computed(() => totalPrice.value === INIT_REF_NUMBER);
@@ -100,6 +135,12 @@ const isLastElement = (index: number) => index + UNIT === cart.value.length;
     font-weight: 600;
   }
 
+  &__review-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   &__empty {
     grid-column: 1 / -1;
     padding: 36px;
@@ -123,6 +164,10 @@ const isLastElement = (index: number) => index + UNIT === cart.value.length;
 <style lang="scss">
 .nv-cart__review-btn {
   color: var(--ui-bg);
+  justify-content: center;
+}
+
+.nv-cart__review-clear-btn {
   justify-content: center;
 }
 </style>

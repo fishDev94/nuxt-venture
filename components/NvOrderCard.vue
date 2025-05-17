@@ -7,7 +7,7 @@
         variant="ghost"
         size="xs"
         class="font-bold"
-        @click="removeFromCart(productId)"
+        @click="handleRemoveClick"
         >Remove</UButton
       >
     </header>
@@ -41,6 +41,7 @@ const { productId, quantity = UNIT } = defineProps<{
   quantity?: number;
 }>();
 
+const toast = useToast();
 const { removeFromCart } = useCart()
 
 const { data } = await useAsyncData(
@@ -52,6 +53,16 @@ const { data } = await useAsyncData(
     },
   }
 );
+
+const handleRemoveClick = () => {
+  removeFromCart(productId)
+  toast.add({
+      title: "Experience removed from your itinerary!",
+      ui: { title: "text-(--ui-secondary)" },
+      duration: 2000,
+      color: "error"
+    });
+}
 </script>
 
 <style lang="scss" scoped>
