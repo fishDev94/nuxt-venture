@@ -1,7 +1,7 @@
 <template>
   <nav class="nv-navbar">
     <UiHamMenu />
-    <div class="nv-navbar__logo">
+    <div class="nv-navbar__logo" @click="$router.push('/')">
       <UiNvLogo />
       <h1>nuxt venture</h1>
     </div>
@@ -19,7 +19,11 @@
 
 <style lang="scss" scoped>
 @use "assets/style/utils" as *;
+
 .nv-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,6 +39,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 
     @include start-from(medium-desktop) {
       flex-direction: row;

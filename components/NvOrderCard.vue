@@ -24,6 +24,7 @@
           <p><strong>Type:</strong> {{ dataCard.type }}</p>
           <p><strong>City:</strong> {{ dataCard.city }}</p>
         </div>
+        <p><strong>Quantity:</strong> <strong class="text-(--ui-primary)">{{ quantity }}</strong></p>
       </section>
     </main>
     <footer class="nv-ordercard__footer">
@@ -34,9 +35,11 @@
 
 <script lang="ts" setup>
 import type { Product } from "~/types/Products";
+import { UNIT } from "~/constants";
 
-const { dataCard } = defineProps<{
+const { dataCard, quantity = UNIT } = defineProps<{
   dataCard: Product;
+  quantity?: number;
 }>();
 
 const handleRemoveClick = () => {

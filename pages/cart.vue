@@ -30,6 +30,10 @@
 import { INIT, INIT_REF_NUMBER, UNIT } from "~/constants";
 import type { Product } from "~/types/Products";
 
+definePageMeta({
+  middleware: ['cart-page']
+})
+
 const cartMockData = ref<Product[]>([
   {
     id: 1,

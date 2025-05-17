@@ -39,6 +39,10 @@
 <script lang="ts" setup>
 import NvCarousel from "~/components/ui/NvCarousel.vue";
 
+definePageMeta({
+  name: 'home'
+})
+
 const { data: hotels } = useFetch("/api/products", {
   query: {
     type: "hotel",

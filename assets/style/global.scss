@@ -37,10 +37,6 @@
     color: rgba(var(--nv-neutral-80));
   }
 
-  strong {
-    color: rgba(var(--nv-neutral-90));
-  }
-
   .border {
     border-color: var(--ui-border) !important;
   }
@@ -132,5 +128,6 @@ p > span {
 }
 
 button {
+  cursor: pointer;
   border-radius: var(--nv-radius-xs);
 }

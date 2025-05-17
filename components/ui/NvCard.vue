@@ -1,26 +1,28 @@
 <template>
-  <UCard class="nv-card" as="a" :href="`/id/${id}`">
-    <template #header>
-      <NuxtImg :src class="nv-card__img h-34 lg:h-48" />
-    </template>
-
-    <template #default>
-      <div class="nv-card__footer-container">
-        <div class="nv-card__footer-subhead">
-          <h3 class="nv-card__title">{{ title }}</h3>
-          <p class="nv-card__description">
-            {{ description }}
-          </p>
+  <NuxtLink class="nv-card-wrapper" :to="`/products/${id}`">
+    <UCard class="nv-card">
+      <template #header>
+        <NuxtImg :src class="nv-card__img h-34 lg:h-48" />
+      </template>
+  
+      <template #default>
+        <div class="nv-card__footer-container">
+          <div class="nv-card__footer-subhead">
+            <h3 class="nv-card__title">{{ title }}</h3>
+            <p class="nv-card__description">
+              {{ description }}
+            </p>
+          </div>
+          <div class="nv-card__info">
+            <p class="nv-card__info--price">
+              <strong>€ {{ price }}</strong>
+            </p>
+            <UiRatingStar v-if="rating" :rating />
+          </div>
         </div>
-        <div class="nv-card__info">
-          <p class="nv-card__info--price">
-            <strong>€ {{ price }}</strong>
-          </p>
-          <UiRatingStar v-if="rating" :rating />
-        </div>
-      </div>
-    </template>
-  </UCard>
+      </template>
+    </UCard>
+  </NuxtLink>
 </template>
 
 <script lang="ts" setup>
@@ -45,16 +47,20 @@ const {
 <style lang="scss" scoped>
 @use "assets/style/utils" as *;
 
-.nv-card {
+.nv-card-wrapper {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
   flex: 0 0 230px;
   scroll-snap-align: start;
 
   @include start-from(tablet) {
     min-width: 320px;
   }
+}
+
+.nv-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
   & > * {
     flex: 1;
