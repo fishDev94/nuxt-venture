@@ -31,15 +31,23 @@
         </ul>
       </div>
       <div class="nv-product-page__sidebar wrapper">
-        <div class="nv-product-page__sidebar-price-container">
-          <p class="nv-product-page__sidebar-price-from">From:</p>
-          <p class="nv-product-page__sidebar-price">
-            <strong>€ {{ data.price }}</strong>
-          </p>
+        <div class="nv-product-page__sidebar-container">
+          <div class="nv-product-page__sidebar-price-container">
+            <p class="nv-product-page__sidebar-price-from">From:</p>
+            <p class="nv-product-page__sidebar-price">
+              <strong>€ {{ data.price }}</strong>
+            </p>
+          </div>
+          <UInputNumber
+            v-model="quantity"
+            class="nv-product-page__sidebar-selector"
+            :min="1"
+            variant="none"
+          />
         </div>
         <UButton
           class="nv-product-page__sidebar-btn font-bold text-(--ui-bg) px-6"
-          @click="addToCart(data.id, data.price)"
+          @click="addToCart(data.id, data.price, quantity)"
           >Add to cart</UButton
         >
       </div>
@@ -49,9 +57,11 @@
 
 <script lang="ts" setup>
 import RatingStar from "~/components/ui/RatingStar.vue";
+import { UNIT } from "~/constants";
 
 const route = useRoute();
 const { addToCart } = useCart();
+const quantity = ref(UNIT);
 
 const { data } = await useAsyncData(
   route.params.id as string,
@@ -62,8 +72,6 @@ const { data } = await useAsyncData(
     },
   }
 );
-
-console.log(data.value);
 </script>
 
 <style lang="scss" scoped>
@@ -256,17 +264,26 @@ console.log(data.value);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
     height: 74px;
     box-shadow: 0 0 10px -2px rgba(var(--nv-neutral-100), 0.15);
 
     @include start-from(medium-desktop) {
+      flex-direction: column;
       position: static;
       width: 100%;
+      gap: 16px;
       height: max-content;
       grid-area: sidebar;
       padding: 16px;
       border-radius: 12px;
     }
+  }
+
+  &__sidebar-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 
   &__sidebar-price-container {
@@ -298,6 +315,22 @@ console.log(data.value);
     @include start-from(medium-desktop) {
       @include sub-heading(5);
     }
+  }
+
+  &__sidebar-selector {
+    width: 100px;
+    background-color: rgba(var(--nv-secondary-100), 0.1);
+    border-radius: 4px;
+    height: 100%;
+
+    & > * {
+      color: var(--ui-secondary);
+    }
+  }
+
+  :deep(.nv-product-page__sidebar-btn) {
+      flex: 0 0 auto;
+
   }
 }
 </style>

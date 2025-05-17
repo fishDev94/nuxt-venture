@@ -8,14 +8,24 @@
     <div class="nv-navbar__menu-content">
       <UiNavMenu />
       <NuxtLink to="/cart" class="nv-navbar__cart-menu">
-        <UIcon href="/cart" class="nv-navbar__cart-menu-icon" name="el:shopping-cart" />
+        <UChip size="3xl" :show="isCart" :text="totalItems">
+          <UIcon
+            href="/cart"
+            class="nv-navbar__cart-menu-icon"
+            name="el:shopping-cart"
+          />
+        </UChip>
         <p>Cart</p>
       </NuxtLink>
     </div>
   </nav>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { cart, totalItems } = useCart()
+
+const isCart = computed(() => Boolean(cart.value.length))
+</script>
 
 <style lang="scss" scoped>
 @use "assets/style/utils" as *;
