@@ -8,7 +8,7 @@
             :key="`gallery-${idx}`"
             :src="imageUrl"
             :alt="`gallery-${idx}`"
-          />
+          >
         </div>
         <div class="nv-product-page__header-breadcrumbs">
           <NuxtLink :to="{ name: 'home' }">Home</NuxtLink><strong>/</strong
