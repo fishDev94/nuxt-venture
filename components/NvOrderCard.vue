@@ -1,50 +1,57 @@
 <template>
   <article class="nv-ordercard">
-    <header class="nv-ordercard__header">
-      <UiRatingStar :rating="dataCard.rating" />
+    <header v-if="data" class="nv-ordercard__header">
+      <UiRatingStar :rating="data.rating" />
       <UButton
         icon="tabler:trash"
         variant="ghost"
         size="xs"
         class="font-bold"
-        @click="handleRemoveClick"
+        @click="removeFromCart(productId)"
         >Remove</UButton
       >
     </header>
-    <main class="nv-ordercard__main">
-      <h3>{{ dataCard.name }}</h3>
+    <main v-if="data" class="nv-ordercard__main">
+      <h3>{{ data.name }}</h3>
       <NuxtImg
         class="nv-ordercard__main-img"
-        :src="dataCard.coverImage"
-        :alt="dataCard.name"
+        :src="data.coverImage"
+        :alt="data.name"
       />
       <section class="nv-ordercard__main-details">
-        <p>{{ dataCard.shortDescription }}</p>
+        <p>{{ data.shortDescription }}</p>
         <div>
-          <p><strong>Type:</strong> {{ dataCard.type }}</p>
-          <p><strong>City:</strong> {{ dataCard.city }}</p>
+          <p><strong>Type:</strong> {{ data.type }}</p>
+          <p><strong>City:</strong> {{ data.city }}</p>
         </div>
         <p><strong>Quantity:</strong> <strong class="text-(--ui-primary)">{{ quantity }}</strong></p>
       </section>
     </main>
-    <footer class="nv-ordercard__footer">
-      <strong>€ {{ dataCard.price }}</strong>
+    <footer v-if="data" class="nv-ordercard__footer">
+      <strong>€ {{ data.price }}</strong>
     </footer>
   </article>
 </template>
 
 <script lang="ts" setup>
-import type { Product } from "~/types/Products";
 import { UNIT } from "~/constants";
 
-const { dataCard, quantity = UNIT } = defineProps<{
-  dataCard: Product;
+const { productId, quantity = UNIT } = defineProps<{
+  productId: number;
   quantity?: number;
 }>();
 
-const handleRemoveClick = () => {
-  console.log("remove clicked", dataCard.id);
-};
+const { removeFromCart } = useCart()
+
+const { data } = await useAsyncData(
+  `cart-product-id-${productId}`,
+  () => $fetch(`/api/products/${productId}`),
+  {
+    getCachedData(key, nuxtApp) {
+      return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+    },
+  }
+);
 </script>
 
 <style lang="scss" scoped>

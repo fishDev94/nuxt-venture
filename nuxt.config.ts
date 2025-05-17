@@ -7,12 +7,12 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en'
       },
-      title: "Nuxt Venture",
+      title: "Vuenture",
       meta: [
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
           name: "description",
-          content: "Nuxt Venture ecommerce for your trip",
+          content: "Vuenture ecommerce for your trip",
         },
       ],
       link: [

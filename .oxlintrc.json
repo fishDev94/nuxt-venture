@@ -33,6 +33,9 @@
           { "allowEmptyLines": true }
         ]
       }
+    },
+    {
+     "ignore": ["**/__tests__/**", "**/*.test.{js,ts}"]
     }
   ]
 }

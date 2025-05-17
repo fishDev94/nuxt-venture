@@ -22,7 +22,7 @@ describe("useScrollable", () => {
       clientHeight: 500,
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      scroll: vi.fn((options) => {
+      scroll: vi.fn(function (options) {
         this.scrollLeft = options.left;
       }),
     };

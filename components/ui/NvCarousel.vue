@@ -5,13 +5,19 @@
     </div>
     <div v-if="shouldShowArrows" class="nv-carousel__scroll-btn">
       <UButton
-        :class="['nv-carousel__arrow-icon', {'nv-carousel__arrow-icon--active': !isPrevDisabled }]"
+        :class="[
+          'nv-carousel__arrow-icon',
+          { 'nv-carousel__arrow-icon--active': !isPrevDisabled },
+        ]"
         variant="ghost"
         icon="ep:arrow-left-bold"
         @click="handleScroll()"
       />
       <UButton
-        :class="['nv-carousel__arrow-icon', {'nv-carousel__arrow-icon--active': !isNextDisabled }]"
+        :class="[
+          'nv-carousel__arrow-icon',
+          { 'nv-carousel__arrow-icon--active': !isNextDisabled },
+        ]"
         variant="ghost"
         icon="ep:arrow-right-bold"
         @click="handleScroll('right')"
@@ -30,8 +36,12 @@ const cardWidth = computed(() => {
   );
 });
 
-const { handleScroll, shouldShowArrows, isNextDisabled, isPrevDisabled } =
-  useScrollable(caruselEl, cardWidth);
+const {
+  handleScroll,
+  shouldShowArrows,
+  isNextDisabled,
+  isPrevDisabled,
+} = useScrollable(caruselEl, cardWidth);
 </script>
 
 <style lang="scss" scoped>

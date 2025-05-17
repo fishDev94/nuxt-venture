@@ -71,6 +71,10 @@ export const useScrollable = <T extends HTMLElement>(
     }
   });
 
+  onUpdated(() => {
+    updateScrollValue();
+  })
+
   onWindowResize(() => {
     updateScrollValue();
   });
@@ -86,8 +90,6 @@ export const useScrollable = <T extends HTMLElement>(
 
     next();
   });
-
-  watch(element, () => updateScrollValue())
 
   return {
     isNextDisabled,

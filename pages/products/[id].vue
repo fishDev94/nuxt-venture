@@ -16,7 +16,20 @@
         </div>
         <h1 class="nv-product-page__header-title">{{ data.name }}</h1>
       </div>
-      <div class="nv-product-page__main"></div>
+      <div class="nv-product-page__main">
+        <div class="nv-product-page__main-rating">
+          <p class="nv-product-page__main-rating-text">Rating:</p>
+          <RatingStar :rating="data.rating" />
+        </div>
+        <div class="nv-product-page__main-description">
+          <p><strong>Info:</strong></p>
+          <p>{{ data.shortDescription }}</p>
+        </div>
+        <ul class="nv-product-page__main-info">
+          <li><strong>Type:</strong> {{ data.type }}</li>
+          <li><strong>City:</strong> {{ data.city }}</li>
+        </ul>
+      </div>
       <div class="nv-product-page__sidebar wrapper">
         <div class="nv-product-page__sidebar-price-container">
           <p class="nv-product-page__sidebar-price-from">From:</p>
@@ -24,16 +37,23 @@
             <strong>€ {{ data.price }}</strong>
           </p>
         </div>
-        <UButton class="nv-product-page__sidebar-btn font-bold text-(--ui-bg) px-6">Add to cart</UButton>
+        <UButton
+          class="nv-product-page__sidebar-btn font-bold text-(--ui-bg) px-6"
+          @click="addToCart(data.id, data.price)"
+          >Add to cart</UButton
+        >
       </div>
     </section>
   </main>
 </template>
 
 <script lang="ts" setup>
-const route = useRoute();
+import RatingStar from "~/components/ui/RatingStar.vue";
 
-const { data, pending } = await useAsyncData(
+const route = useRoute();
+const { addToCart } = useCart();
+
+const { data } = await useAsyncData(
   route.params.id as string,
   () => $fetch(`/api/products/${route.params.id}`),
   {
@@ -170,11 +190,60 @@ console.log(data.value);
   }
 
   &__main {
-    height: 500px;
-    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 
     @include start-from(medium-desktop) {
       grid-area: main;
+    }
+  }
+
+  &__main-rating {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2px;
+
+    p:nth-child(2) {
+      @include body(3);
+
+      @include start-from(medium-desktop) {
+        @include body(1);
+      }
+    }
+  }
+
+  &__main-rating-text {
+    color: var(--ui-secondary);
+    font-weight: 600;
+
+    @include start-from(medium-desktop) {
+      @include body(1);
+
+      font-weight: 600;
+    }
+  }
+
+  &__main-description {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    p {
+      @include start-from(medium-desktop) {
+        @include body(1);
+      }
+    }
+  }
+
+  &__main-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    @include start-from(medium-desktop) {
+      @include body(1);
     }
   }
 
@@ -188,7 +257,7 @@ console.log(data.value);
     justify-content: space-between;
     align-items: center;
     height: 74px;
-    box-shadow: 0 -1px 10px -2px rgba(var(--nv-neutral-100), 0.15);
+    box-shadow: 0 0 10px -2px rgba(var(--nv-neutral-100), 0.15);
 
     @include start-from(medium-desktop) {
       position: static;

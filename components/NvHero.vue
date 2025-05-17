@@ -3,7 +3,7 @@
     <img class="nv-hero__img" src="/img/hero-image.webp" alt="Discover venture">
     <div class="nv-hero__overlay" />
     <div class="nv-hero__content">
-      <h1>Discover the world with nv</h1>
+      <h1>Discover the world with vue-n</h1>
       <p>From hotels to activities, the best experiences in your destination.</p>
     </div>
   </section>

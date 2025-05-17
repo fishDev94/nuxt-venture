@@ -2,17 +2,16 @@
   <main>
     <div class="nv-cart wrapper">
       <h1 class="nv-cart__title">Cart</h1>
-      <section class="nv-cart__content block-section">
-        <div v-for="(product, idx) in cartMockData" :key="`cart-data-${product.id}`">
-          <NvOrderCard 
-          :data-card="product" />
-          <div v-if="!isLastElement(idx)" class="separator"/>
+      <section v-if="isCart" class="nv-cart__content block-section">
+        <div v-for="(product, idx) in cart" :key="`cart-data-${product.id}`">
+          <NvOrderCard :product-id="product.id" :quantity="product.quantity" />
+          <div v-if="!isLastElement(idx)" class="separator" />
         </div>
       </section>
-      <section class="nv-cart__review block-section">
+      <section v-if="isCart" class="nv-cart__review block-section">
         <h2 class="nv-cart__review-title">Order review</h2>
         <div class="nv-cart__review-content">
-          <UIcon name="el:shopping-cart" /> {{ totalExperiences }} Experiences
+          <UIcon name="el:shopping-cart" /> {{ totalItems }} Experiences
         </div>
         <div class="nv-cart__review-price">
           <span>Total</span>
@@ -22,61 +21,23 @@
           >Go to checkout</UButton
         >
       </section>
+      <section v-else class="nv-cart__empty block-section">
+        <h3>Your Adventure Awaits</h3>
+        <p>Your cart is empty, but the world isn't.</p>
+      </section>
     </div>
   </main>
 </template>
 
 <script lang="ts" setup>
-import { INIT, INIT_REF_NUMBER, UNIT } from "~/constants";
-import type { Product } from "~/types/Products";
+import { INIT_REF_NUMBER, UNIT } from "~/constants";
 
-definePageMeta({
-  middleware: ['cart-page']
-})
+const { totalItems, totalPrice, cart } = useCart();
 
-const cartMockData = ref<Product[]>([
-  {
-    id: 1,
-    type: "experience",
-    name: "Chianti Countryside Vespa Tour",
-    city: "Florence",
-    price: 95,
-    rating: 4.8,
-    shortDescription:
-    "Ride a classic Vespa through the rolling hills of Chianti with tastings at two wineries.",
-    coverImage: "https://picsum.photos/seed/vespa/600/400",
-    images: [
-      "https://picsum.photos/seed/vespa1/800/600",
-      "https://picsum.photos/seed/vespa2/800/600",
-      "https://picsum.photos/seed/vespa3/800/600",
-    ],
-  },
-  {
-    id: 9,
-    type: "experience",
-    name: "Limoncello Workshop on Amalfi Coast",
-    city: "Amalfi",
-    price: 50,
-    rating: 4.9,
-    shortDescription:
-    "Craft your own limoncello using Amalfi lemons in a traditional family-run limoneto.",
-    coverImage: "https://picsum.photos/seed/limoncello/600/400",
-    images: [
-      "https://picsum.photos/seed/limoncello1/800/600",
-      "https://picsum.photos/seed/limoncello2/800/600",
-      "https://picsum.photos/seed/limoncello3/800/600",
-    ],
-  },
-]);
-
-const totalPrice = computed(() => {
-  return cartMockData.value.reduce((sum, item) => sum + item.price, INIT);
-});
-const totalExperiences = computed(() => cartMockData.value.length);
+const isCart = computed(() => Boolean(cart.value.length));
 const isButtonDisabled = computed(() => totalPrice.value === INIT_REF_NUMBER);
 
-const isLastElement = (index: number) =>
-  index + UNIT === cartMockData.value.length;
+const isLastElement = (index: number) => index + UNIT === cart.value.length;
 </script>
 
 <style lang="scss" scoped>
@@ -90,6 +51,7 @@ const isLastElement = (index: number) =>
     "items"
     "aside";
   gap: 16px;
+  padding-block: 16px;
 
   @include start-from(medium-desktop) {
     grid-template-columns: 1fr 420px;
@@ -97,6 +59,7 @@ const isLastElement = (index: number) =>
       "title title"
       "items aside";
     gap: 24px;
+    padding-block: 24px;
   }
 
   &__title {
@@ -118,6 +81,11 @@ const isLastElement = (index: number) =>
     flex-direction: column;
     gap: 16px;
     height: max-content;
+
+    @include start-from(medium-desktop) {
+      position: sticky;
+      top: 100px;
+    }
   }
 
   &__review-title {
@@ -130,6 +98,17 @@ const isLastElement = (index: number) =>
     display: flex;
     justify-content: space-between;
     font-weight: 600;
+  }
+
+  &__empty {
+    grid-column: 1 / -1;
+    padding: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
   }
 }
 
