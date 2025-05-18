@@ -3,6 +3,9 @@ export const INIT = 0;
 export const FIRST_ELEMENT = 0;
 export const UNIT = 1;
 
+export const SKT_SHORT_CAROUSEL = 3
+export const SKT_LONG_CAROUSEL = 8
+
 export const SCROLL_MOVE = 200;
 export const DEBOUNCE_TIME = 100;
 

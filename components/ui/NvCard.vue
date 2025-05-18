@@ -2,9 +2,13 @@
   <NuxtLink class="nv-card-wrapper" :to="`/products/${id}`">
     <UCard class="nv-card">
       <template #header>
-        <NuxtImg :src class="nv-card__img h-34 lg:h-48" />
+        <NuxtImg
+          :src
+          class="nv-card__img h-34 lg:h-48"
+          :placeholder="`data:image/svg+xml;base64,${toBase64(shimmer())}`"
+        />
       </template>
-  
+
       <template #default>
         <div class="nv-card__footer-container">
           <div class="nv-card__footer-subhead">
