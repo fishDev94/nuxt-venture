@@ -6,6 +6,9 @@
 .cache
 dist
 
+# Nuxt vitest coverage report
+coverage/
+
 # Node dependencies
 node_modules
 

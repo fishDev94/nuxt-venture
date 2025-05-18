@@ -1,7 +1,24 @@
 <template>
   <div class="nv-carousel">
     <div ref="carousel-ref" class="nv-carousel__scroller">
-      <slot />
+      <template v-if="isSuccessed">
+        <UiNvCard
+          v-for="(product, idx) in data"
+          :id="product.id"
+          :key="`${product.type}-${idx}`"
+          :title="product.name"
+          :price="product.price"
+          :description="product.shortDescription"
+          :src="product.coverImage"
+          :rating="product.rating"
+        />
+      </template>
+      <template v-else>
+        <SkeletonNvCard
+          v-for="(_, idx) in Array(lengthSkeletonArray)"
+          :key="`skeleton-${type}-${idx}`"
+        />
+      </template>
     </div>
     <div v-if="shouldShowArrows" class="nv-carousel__scroll-btn">
       <UButton
@@ -27,7 +44,36 @@
 </template>
 
 <script lang="ts" setup>
-import { FIRST_ELEMENT, INIT_REF_NUMBER } from "~/constants";
+import {
+  FIRST_ELEMENT,
+  INIT_REF_NUMBER,
+  SKT_LONG_CAROUSEL,
+  SKT_SHORT_CAROUSEL,
+} from "~/constants";
+import type { Product } from "~/types/Products";
+
+const { type } = defineProps<{
+  type: Product["type"];
+}>();
+
+const { data, status, error } = await useFetch(
+  "/api/products",
+  {
+    query: {
+      type,
+    },
+    getCachedData(key, nuxtApp) {
+      return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+    },
+  },
+);
+
+if (error.value) {
+  throw createError({
+    statusCode: error.value.statusCode,
+    statusMessage: error.value.statusMessage,
+  });
+}
 
 const caruselEl = useTemplateRef("carousel-ref");
 const cardWidth = computed(() => {
@@ -35,13 +81,14 @@ const cardWidth = computed(() => {
     caruselEl.value?.children[FIRST_ELEMENT].clientWidth || INIT_REF_NUMBER
   );
 });
+const isSuccessed = computed(() => status.value === "success");
 
-const {
-  handleScroll,
-  shouldShowArrows,
-  isNextDisabled,
-  isPrevDisabled,
-} = useScrollable(caruselEl, cardWidth);
+const lengthSkeletonArray = computed(() =>
+  type === "experience" ? SKT_LONG_CAROUSEL : SKT_SHORT_CAROUSEL
+);
+
+const { handleScroll, shouldShowArrows, isNextDisabled, isPrevDisabled } =
+  useScrollable(caruselEl, cardWidth);
 </script>
 
 <style lang="scss" scoped>

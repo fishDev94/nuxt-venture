@@ -17,6 +17,7 @@
         class="nv-ordercard__main-img"
         :src="data.coverImage"
         :alt="data.name"
+        :placeholder="`data:image/svg+xml;base64,${toBase64(shimmer())}`"
       />
       <section class="nv-ordercard__main-details">
         <p>{{ data.shortDescription }}</p>
@@ -44,15 +45,11 @@ const { productId, quantity = UNIT } = defineProps<{
 const toast = useToast();
 const { removeFromCart } = useCart()
 
-const { data } = await useAsyncData(
-  `cart-product-id-${productId}`,
-  () => $fetch(`/api/products/${productId}`),
-  {
+const { data } = await useFetch(`/api/products/${productId}`, {
     getCachedData(key, nuxtApp) {
       return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
     },
-  }
-);
+  })
 
 const handleRemoveClick = () => {
   removeFromCart(productId)

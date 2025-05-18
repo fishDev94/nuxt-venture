@@ -1,11 +1,12 @@
 <template>
   <div class="nv-gallery">
-    <img
+    <NuxtImg
       v-for="(imageUrl, idx) in images"
       :key="`gallery-${idx}`"
       :src="imageUrl"
       :alt="`gallery-${idx}`"
-    >
+      :placeholder="`data:image/svg+xml;base64,${toBase64(shimmer())}`"
+    />
   </div>
 </template>
 

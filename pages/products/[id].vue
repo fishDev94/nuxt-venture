@@ -60,15 +60,18 @@ const { addToCart } = useCart();
 const toast = useToast();
 const quantity = ref(UNIT);
 
-const { data } = await useAsyncData(
-  route.params.id as string,
-  () => $fetch(`/api/products/${route.params.id}`),
-  {
-    getCachedData(key, nuxtApp) {
+const { data, error } = await useFetch(`/api/products/${route.params.id}`, {
+  getCachedData(key, nuxtApp) {
       return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
     },
-  }
-);
+})
+
+if (error.value) {
+  throw createError({
+    statusCode: error.value.statusCode,
+    statusMessage: error.value.statusMessage,
+  });
+}
 
 const handleAddCartClick = () => {
   if (data.value) {

@@ -1,10 +1,17 @@
 <template>
   <section class="nv-hero">
-    <img class="nv-hero__img" src="/img/hero-image.webp" alt="Discover venture">
+    <NuxtImg
+      class="nv-hero__img"
+      src="/img/hero-image.webp"
+      alt="Discover venture"
+      :placeholder="`data:image/svg+xml;base64,${toBase64(shimmer())}`"
+    />
     <div class="nv-hero__overlay" />
     <div class="nv-hero__content">
       <h1>Discover the world with vue-n</h1>
-      <p>From hotels to activities, the best experiences in your destination.</p>
+      <p>
+        From hotels to activities, the best experiences in your destination.
+      </p>
     </div>
   </section>
 </template>
@@ -28,6 +35,8 @@
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__overlay {
@@ -50,8 +59,8 @@
     padding: 0 16px;
 
     @include start-from(medium-desktop) {
-    padding: 0 64px;
-  }
+      padding: 0 64px;
+    }
 
     h1 {
       text-transform: uppercase;

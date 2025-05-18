@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NvCard component > renders correctly 1`] = `"<routerlink data-v-5ddb1678=\\"\\" to=\\"/products/5\\" class=\\"nv-card-wrapper\\"></routerlink>"`;
